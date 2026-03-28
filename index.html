@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laura Cantekin — Communications & Editorial Leader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f4f0;
+      --gray-dark: #1c1c1c;
+      --gray-mid: #4a4a4a;
+      --gray-light: #b8b8b0;
+      --gray-rule: #d0cfc8;
+      --accent: #0a0a0a;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--white); }
+    ::-webkit-scrollbar-thumb { background: var(--black); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 3rem;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-rule);
+      mix-blend-mode: normal;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem 3rem 5rem 3rem;
+      border-right: 1px solid var(--gray-rule);
+      position: relative;
+    }
+
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--gray-rule);
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .hero-photo-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .hero-photo-placeholder span {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+    }
+
+    .hero-photo-placeholder svg {
+      opacity: 0.3;
+    }
+
+    .hero-text-block {
+      padding-top: 2.5rem;
+    }
+
+    .hero-issue {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 7vw, 7rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    .hero-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--black);
+      margin: 2.5rem 0;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--gray-mid);
+      max-width: 360px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5rem 3rem;
+    }
+
+    .hero-stat-block {
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1s;
+    }
+
+    .hero-stat {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--gray-rule);
+    }
+
+    .hero-stat:first-child { border-top: 1px solid var(--gray-rule); }
+
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--black);
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-top: 0.4rem;
+    }
+
+    .hero-cta {
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1.2s;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--black);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--black);
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 7rem 3rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 4rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    #about .section-label { color: var(--gray-mid); }
+    #about .section-title { color: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--gray-light);
+    }
+
+    .about-body p + p { margin-top: 1.5rem; }
+
+    .about-aside {
+      border-left: 1px solid var(--gray-dark);
+      padding-left: 3rem;
+    }
+
+    .about-pull {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 2.5rem;
+    }
+
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .skills-list li {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .skills-list li::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gray-mid);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience {
+      background: var(--white);
+      border-top: 1px solid var(--gray-rule);
+    }
+
+    .exp-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .exp-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 220px;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--gray-rule);
+      align-items: start;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .exp-row.animate-out {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .exp-row.visible { opacity: 1; transform: translateY(0); }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--gray-light);
+      padding-top: 0.3rem;
+    }
+
+    .exp-role {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--black);
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-org {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 1rem;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .exp-bullets li {
+      font-size: 0.875rem;
+      color: var(--gray-mid);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gray-light);
+    }
+
+    .exp-tag-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+
+    .exp-tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      border: 1px solid var(--gray-rule);
+      padding: 0.3rem 0.7rem;
+      white-space: nowrap;
+    }
+
+    .edu-block {
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 2px solid var(--black);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .edu-item { }
+    .edu-degree {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 0.3rem;
+    }
+    .edu-school {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+    }
+
+    /* ── PORTFOLIO ── */
+    #portfolio {
+      background: var(--gray-dark);
+      color: var(--white);
+    }
+
+    #portfolio .section-label { color: var(--gray-mid); }
+    #portfolio .section-title { color: var(--white); }
+
+    .portfolio-intro {
+      font-size: 1rem;
+      color: var(--gray-light);
+      max-width: 560px;
+      margin-bottom: 4rem;
+      line-height: 1.8;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--gray-mid);
+    }
+
+    .portfolio-card {
+      background: var(--gray-dark);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: background 0.25s;
+      cursor: default;
+    }
+
+    .portfolio-card:hover { background: #222; }
+
+    .card-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 900;
+      color: #2a2a2a;
+      line-height: 1;
+    }
+
+    .card-category {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+    }
+
+    .card-title {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--gray-light);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .card-meta {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      padding-top: 1rem;
+      border-top: 1px solid #2a2a2a;
+    }
+
+    /* ── AWARDS STRIP ── */
+    .awards-strip {
+      background: var(--black);
+      border-top: 1px solid #222;
+      padding: 2rem 3rem;
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+      overflow-x: auto;
+    }
+
+    .award-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .award-badge {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--gray-mid);
+    }
+
+    .award-text { }
+    .award-name {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .award-org {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--gray-mid);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--white);
+      border-top: 1px solid var(--gray-rule);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-left .section-title { margin-bottom: 1.5rem; }
+
+    .contact-sub {
+      font-size: 1rem;
+      color: var(--gray-mid);
+      line-height: 1.8;
+      margin-bottom: 3rem;
+      max-width: 380px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--black);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+
+    .contact-item:hover { color: var(--gray-mid); }
+
+    .contact-item-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      width: 60px;
+    }
+
+    /* FORM */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--gray-rule);
+      padding: 0.75rem 0;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-bottom-color: var(--black);
+    }
+
+    .form-group textarea { min-height: 100px; }
+
+    .form-submit {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--black);
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+      align-self: flex-start;
+    }
+
+    .form-submit:hover { background: transparent; color: var(--black); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #1c1c1c;
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--gray-mid);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { border-right: none; border-bottom: 1px solid var(--gray-rule); padding: 4rem 1.5rem 3rem; }
+      .hero-right { padding: 3rem 1.5rem; }
+
+      section { padding: 5rem 1.5rem; }
+
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-aside { border-left: none; border-top: 1px solid var(--gray-dark); padding-left: 0; padding-top: 2rem; }
+
+      .exp-row { grid-template-columns: 1fr; gap: 1rem; }
+      .exp-tag-group { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
+
+      .portfolio-grid { grid-template-columns: 1fr; }
+
+      .edu-block { grid-template-columns: 1fr; gap: 2rem; }
+
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">Laura Cantekin</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#portfolio">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-photo">
+        <!-- Replace the img tag below with your own photo when ready -->
+        <!-- <img src="your-photo.jpg" alt="Laura Cantekin" /> -->
+        <div class="hero-photo-placeholder">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="18" r="8" stroke="#4a4a4a" stroke-width="1.5"/>
+            <path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#4a4a4a" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>Your photo here</span>
+        </div>
+      </div>
+      <div class="hero-text-block">
+        <div class="hero-issue">Communications &amp; Editorial Leader</div>
+        <h1 class="hero-headline">Laura<br/><em>Cantekin</em></h1>
+        <div class="hero-rule"></div>
+        <p class="hero-tagline">I help people and institutions tell stories that connect across cultures, languages, and communities — with clarity, care, and global reach.</p>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-block">
+        <div class="hero-stat">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Years building bridges across cultures &amp; communities</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-number">1,000+</div>
+          <div class="stat-label">Reports produced for global audiences</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-number">200%</div>
+          <div class="stat-label">Expansion in nationwide reporting capacity</div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">01 — Profile</div>
+    <h2 class="section-title">At the intersection<br/>of <em>trust</em> &amp; story.</h2>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>I'm a senior communications and editorial leader with more than a decade of experience directing global content operations and managing distributed teams in high-stakes environments. My work sits at the intersection of global health, public trust, and institutional storytelling.</p>
+        <p>At Feature Story News, I led editorial operations for Channel NewsAsia's digital platform — growing monthly unique visitors from 10 to 12 million in a single year, while overseeing human-in-the-loop review of AI-assisted content, editorial standards, and crisis communications.</p>
+        <p>Earlier, I worked within philanthropy at the Surdna Foundation, supporting $4.1 million in grantmaking across education, economic justice, and community development — giving me a grounded understanding of how communications functions inside mission-driven institutions.</p>
+        <p>I hold an M.A. in International Educational Development from Columbia University, Teachers College, and a B.A. from Pitzer College.</p>
+      </div>
+      <div class="about-aside">
+        <p class="about-pull">"I've spent my career translating complexity into clarity — for global audiences, institutional leaders, and the communities they serve."</p>
+        <ul class="skills-list">
+          <li>Editorial Operations &amp; Standards</li>
+          <li>AI-Assisted Content Review</li>
+          <li>Crisis &amp; Issues Communications</li>
+          <li>Distributed Team Leadership</li>
+          <li>Media Relations &amp; Spokesperson Prep</li>
+          <li>Audience Analytics &amp; SEO Strategy</li>
+          <li>Cross-Cultural Storytelling</li>
+          <li>Philanthropy &amp; Nonprofit Communications</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">02 — Career</div>
+    <h2 class="section-title">Experience</h2>
+
+    <div class="exp-row">
+      <div class="exp-date">Oct 2023 – Apr 2025</div>
+      <div>
+        <div class="exp-role">Digital News Manager</div>
+        <div class="exp-org">Feature Story News — New York, NY</div>
+        <ul class="exp-bullets">
+          <li>Directed global digital content operations with quality control across platforms and international markets.</li>
+          <li>Troubleshot AI-generated content, identifying factual, tonal, and contextual issues prior to publication.</li>
+          <li>Contributed to a 20% increase in monthly unique visitors (10M → 12M) and launched a North American digital platform.</li>
+          <li>Guided rapid-response editorial decision-making during major global events in legally and politically sensitive environments.</li>
+        </ul>
+      </div>
+      <div class="exp-tag-group">
+        <span class="exp-tag">Editorial Leadership</span>
+        <span class="exp-tag">AI Content</span>
+        <span class="exp-tag">Digital Growth</span>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">Feb 2020 – Oct 2023</div>
+      <div>
+        <div class="exp-role">TV News Producer &amp; Interim Bureau Chief</div>
+        <div class="exp-org">Feature Story News — New York, NY</div>
+        <ul class="exp-bullets">
+          <li>Oversaw newsroom operations, editorial workflows, and national coverage planning during high-volume news cycles.</li>
+          <li>Maintained 100% on-time delivery across broadcast and digital outputs.</li>
+          <li>Expanded nationwide reporting capacity by 200%, recruiting and onboarding reporters across the U.S.</li>
+        </ul>
+      </div>
+      <div class="exp-tag-group">
+        <span class="exp-tag">Bureau Operations</span>
+        <span class="exp-tag">Broadcast</span>
+        <span class="exp-tag">Team Building</span>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">Oct 2015 – Jan 2020</div>
+      <div>
+        <div class="exp-role">TV News Associate Producer</div>
+        <div class="exp-org">Feature Story News — New York, NY</div>
+        <ul class="exp-bullets">
+          <li>Supported live and long-form coverage for international and U.S. broadcast partners on global political, social, and human rights issues.</li>
+          <li>Secured production partnerships expanding U.S. distribution to 30+ million households.</li>
+        </ul>
+      </div>
+      <div class="exp-tag-group">
+        <span class="exp-tag">Production</span>
+        <span class="exp-tag">International</span>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">Sep 2013 – Oct 2014</div>
+      <div>
+        <div class="exp-role">Program Associate</div>
+        <div class="exp-org">Surdna Foundation — New York, NY</div>
+        <ul class="exp-bullets">
+          <li>Contributed to administration of $4.1M in grant funding across education, economic justice, and community development.</li>
+          <li>Supported communications between internal teams and nonprofit partners ensuring alignment with mission and compliance requirements.</li>
+        </ul>
+      </div>
+      <div class="exp-tag-group">
+        <span class="exp-tag">Philanthropy</span>
+        <span class="exp-tag">Grantmaking</span>
+      </div>
+    </div>
+
+    <div class="edu-block">
+      <div class="edu-item">
+        <div class="edu-degree">M.A. — International Educational Development</div>
+        <div class="edu-school">Columbia University, Teachers College · 2011</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">B.A. — International &amp; Intercultural Studies; Religious Studies</div>
+        <div class="edu-school">Pitzer College · 2008</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="section-label">03 — Selected Work</div>
+    <h2 class="section-title">Areas of Focus</h2>
+    <p class="portfolio-intro">A cross-section of the communications and editorial work I've led — from global health coverage to institutional storytelling and AI-assisted content systems.</p>
+
+    <div class="portfolio-grid">
+      <div class="portfolio-card">
+        <div class="card-num">01</div>
+        <div class="card-category">Global Health &amp; Policy</div>
+        <div class="card-title">Pandemic Coverage &amp; Public Trust</div>
+        <div class="card-desc">Reported from New York during the COVID-19 pandemic and covered global health funding debates at the United Nations, translating policy decisions into narratives communities could engage with.</div>
+        <div class="card-meta">Feature Story News · 2020–2023</div>
+      </div>
+      <div class="portfolio-card">
+        <div class="card-num">02</div>
+        <div class="card-category">Digital Growth Strategy</div>
+        <div class="card-title">Channel NewsAsia Platform Launch</div>
+        <div class="card-desc">Secured and managed a multi-year digital content partnership, driving 20% audience growth to 12M monthly users, 1M+ app downloads, and a YouTube audience exceeding 3M subscribers.</div>
+        <div class="card-meta">Feature Story News · 2023–2025</div>
+      </div>
+      <div class="portfolio-card">
+        <div class="card-num">03</div>
+        <div class="card-category">AI &amp; Editorial Systems</div>
+        <div class="card-title">Human-in-the-Loop Content Review</div>
+        <div class="card-desc">Built review workflows for AI-generated content at scale — identifying factual, tonal, and contextual issues before publication and feeding corrections back into production pipelines.</div>
+        <div class="card-meta">Feature Story News · 2023–2025</div>
+      </div>
+      <div class="portfolio-card">
+        <div class="card-num">04</div>
+        <div class="card-category">Institutional Storytelling</div>
+        <div class="card-title">Faculty &amp; Expert Media Relations</div>
+        <div class="card-desc">Elevated Fordham University professors for international digital and broadcast audiences across topics from U.S. elections to New York City economics, conducting in-person interviews and briefing reporters for impact.</div>
+        <div class="card-meta">Feature Story News · 2015–2025</div>
+      </div>
+      <div class="portfolio-card">
+        <div class="card-num">05</div>
+        <div class="card-category">Cross-Cultural Communication</div>
+        <div class="card-title">Community &amp; Language Access Reporting</div>
+        <div class="card-desc">Covered stories where language access and trust directly affected outcomes — including emergency responders learning Cantonese for older Chinese residents and HIV/AIDS and mpox coverage requiring deep community context.</div>
+        <div class="card-meta">Feature Story News · 2015–2023</div>
+      </div>
+      <div class="portfolio-card">
+        <div class="card-num">06</div>
+        <div class="card-category">Media Training</div>
+        <div class="card-title">Senior Leader Interview Preparation</div>
+        <div class="card-desc">Prepared senior leaders — including an AI director — for challenging media interviews, helping them anticipate hard questions, sharpen messaging, and bring clarity to nuanced subject matter.</div>
+        <div class="card-meta">Talkoot &amp; others · 2022–2025</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS STRIP -->
+  <div class="awards-strip">
+    <div class="award-item">
+      <div class="award-badge">◆</div>
+      <div class="award-text">
+        <div class="award-name">Channel of the Year</div>
+        <div class="award-org">International Association of Broadcasters · 2020</div>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-badge">◆</div>
+      <div class="award-text">
+        <div class="award-name">Bronze Medal</div>
+        <div class="award-org">UN Correspondents Association · 2018</div>
+      </div>
+    </div>
+    <div class="award-item">
+      <div class="award-badge">◆</div>
+      <div class="award-text">
+        <div class="award-name">English · Spanish · Italian</div>
+        <div class="award-org">Language Proficiencies</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="section-label">04 — Let's Talk</div>
+        <h2 class="section-title">Get in<br/>touch.</h2>
+        <p class="contact-sub">Open to communications leadership roles, editorial consulting, and media training engagements. Based in New York.</p>
+        <div class="contact-info">
+          <a class="contact-item" href="/cdn-cgi/l/email-protection#9df1fcfefcf3e9f8f6f4f3ddfaf0fcf4f1b3fef2f0">
+            <span class="contact-item-label">Email</span>
+            <span class="__cf_email__" data-cfemail="1d717c7e7c7369787674735d7a707c7471337e7270">[email&#160;protected]</span>
+          </a>
+          <a class="contact-item" href="tel:4104935348">
+            <span class="contact-item-label">Phone</span>
+            410-493-5348
+          </a>
+          <a class="contact-item" href="https://linkedin.com" target="_blank" rel="noopener">
+            <span class="contact-item-label">LinkedIn</span>
+            linkedin.com/in/lauracantekin
+          </a>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="Tell me what you're working on…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message</button>
+          <p id="form-confirm" style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--gray-mid);display:none;">Message received — I'll be in touch soon.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Laura Cantekin</span>
+    <span class="footer-copy">© 2025 · New York, NY · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="026e6361636c7667696b6c42656f636b6e2c616d6f">[email&#160;protected]</a></span>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Scroll-reveal for experience rows
+    const rows = document.querySelectorAll('.exp-row');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible')
